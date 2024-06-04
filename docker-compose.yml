@@ -3,30 +3,34 @@ version: '3'
 volumes:
   pg_data:
   static:
+  media:
 
 services:
   db:
     image: postgres:13
+    env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
   backend:
-    build: r1kenpy/backend/
+    build: ./backend/
     env_file: .env
     volumes:
       - static:/static
-      - media:/var/lib/media/data
+      - media:/media
+    depends_on:
+      - db
   frontend:
     env_file: .env
-    build: r1kenpy/frontend/
+    build: ./frontend/
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
   gateway:
-    build: r1kenpy/gateway/
+    build: ./nginx/
     env_file: .env
     volumes:
       - static:/static
-      - media:/var/lib/media/data
+      - media:/media
     ports:
       - 9000:80
 
