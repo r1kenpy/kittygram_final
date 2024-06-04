@@ -10,18 +10,23 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
   backend:
-    build: ./backend/
+    build: r1kenpy/backend/
     env_file: .env
+    volumes:
+      - static:/static
+      - media:/var/lib/media/data
   frontend:
     env_file: .env
-    build: ./frontend/
+    build: r1kenpy/frontend/
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
   gateway:
-    build: ./nginx/
+    build: r1kenpy/gateway/
     env_file: .env
-    ports:
-      - 9000:80
     volumes:
       - static:/static
+      - media:/var/lib/media/data
+    ports:
+      - 9000:80
+
