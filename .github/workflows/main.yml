@@ -15,7 +15,7 @@ jobs:
           POSTGRES_USER: django_user
           POSTGRES_PASSWORD: django_password
           POSTGRES_DB: django_db
-          ALLOWED_HOSTS: 127.0.0.1 localhost
+          ALLOWED_HOSTS: '127.0.0.1 localhost'
           SECRET_KEY: django-insecure-cg6*
         ports:
           - 5432:5432
