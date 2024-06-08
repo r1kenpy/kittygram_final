@@ -10,6 +10,8 @@ env = os.environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+print(env)
+
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 if 'DEBUG' in env:
