@@ -12,7 +12,7 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
   backend:
-    image: r1kenpy/kittygram_backend
+    image: r1kenpy/kittygram_backend:latest
     env_file: .env
     volumes:
       - static:/static
@@ -21,12 +21,12 @@ services:
       - db
   frontend:
     env_file: .env
-    image: r1kenpy/kittygram_frontend
+    image: r1kenpy/kittygram_frontend:latest
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
   gateway:
-    image: r1kenpy/kittygram_gateway
+    image: r1kenpy/kittygram_gateway:latest
     env_file: .env
     volumes:
       - static:/static
